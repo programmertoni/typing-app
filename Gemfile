@@ -12,6 +12,7 @@ gem 'puma',        '~> 3.0'
 gem 'sass-rails',  '~> 5.0'
 gem 'uglifier',    '>= 1.3.0'
 gem 'slim',        '3.0'
+gem 'bootstrap',   '~> 4.0.0.alpha6'
 
 gem 'jquery-rails',  '~> 4.1'
 gem 'turbolinks',    '~> 5'
@@ -21,6 +22,10 @@ gem 'jbuilder',      '~> 2.5'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+
+source 'https://rails-assets.org' do
+  gem 'rails-assets-tether', '>= 1.3.3'
+end
 
 group :development, :test do
   gem 'byebug', platform: :mri
