@@ -3,7 +3,7 @@ require 'test_helper'
 class BookTest < ActiveSupport::TestCase
   test "name is not valid when is blank" do
     new_book = Book.new(name: "")
-    assert !new_book.valid?
+    assert_not new_book.valid?
   end
 
   test "book has many book_pages" do

@@ -3,7 +3,7 @@ require 'test_helper'
 class OsProjectTest < ActiveSupport::TestCase
   test "name cannot be blank" do
     os_project = OsProject.new(name: "")
-    assert !os_project.valid?
+    assert_not os_project.valid?
   end
 
   test "can have many os_pages" do

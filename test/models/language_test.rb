@@ -3,7 +3,7 @@ require 'test_helper'
 class LanguageTest < ActiveSupport::TestCase
   test "name cannot be blank" do
     language = Language.new(name: "")
-    assert !language.valid?
+    assert_not language.valid?
   end
 
   test "language has many os_projects" do
