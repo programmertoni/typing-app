@@ -14,7 +14,21 @@
 
 @import "bootstrap";
 
+.my-btn-nav-group {
+  margin-right: 28px;
+}
 
+.progress {
+  margin-top: 1px;
+}
+
+.compete {
+  font-size: 1.3em;
+  margin-right: 11px;
+}
+
+
+// main navigation
 .dropdown-submenu {
     position: relative;
 }
@@ -123,3 +137,4 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 // END compete toggle switch
+
