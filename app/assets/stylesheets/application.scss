@@ -14,6 +14,30 @@
 
 @import "bootstrap";
 
+// typing-console
+.computer {
+  background-color: #BDDBFF;
+}
+
+#text {
+  font-size: 1.5em;
+  font-family: "Courier";
+  white-space: pre-wrap;
+}
+
+.cursor {
+  box-shadow:inset 0px 0px 0px 0.5px black;
+}
+
+.wrong-char {
+  color: red;
+}
+
+.right-char {
+  color: #38597F;
+}
+
+// main navigation
 .my-btn-nav-group {
   margin-right: 28px;
 }
@@ -28,7 +52,6 @@
 }
 
 
-// main navigation
 .dropdown-submenu {
     position: relative;
 }
