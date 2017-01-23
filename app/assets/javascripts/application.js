@@ -19,9 +19,3 @@
 
 var compete = false;
 
-$(function() {
-  let competeSwitch = $(".slider");
-  competeSwitch.click(function(){ compete = !compete; });
-
-  typingConsole("tonko balonko");
-});
