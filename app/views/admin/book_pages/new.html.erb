@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col">
+    <h3>Book: <%= @book.name %></h3>  
+    <h4>New Page</h4>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <%= form_for [@book, @book_page], url: {action: "create"}, html: {class: "nifty_form"} do |f| %>
+      Page_number
+      <%= f.text_field :number, value: @page_number %>
+      <br>
+      Content
+      <%= f.text_area :number, autofocus: true, rows: 20, style: 'width:100%;' %>
+      <%= f.submit "Add new Page" %>
+    <% end %>
+  </div>
+</div>
