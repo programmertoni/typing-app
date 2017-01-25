@@ -1,15 +1,15 @@
 function typingConsole(text){
 
-  var text = `
-  def define_model_callbacks(*callbacks)
-    options = callbacks.extract_options!
-    options = {
-
-      terminator: deprecated_false_terminator,
-      skip_after_callbacks_if_terminated: true,
-      scope: [:kind, :name],
-      only: [:before, :around, :after]
-    }.merge!(options)`;
+  // var text = `
+  // def define_model_callbacks(*callbacks)
+  //   options = callbacks.extract_options!
+  //   options = {
+  //
+  //     terminator: deprecated_false_terminator,
+  //     skip_after_callbacks_if_terminated: true,
+  //     scope: [:kind, :name],
+  //     only: [:before, :around, :after]
+  //   }.merge!(options)`;
   // var text = "after disaster can we be resurrected. It\'s only after you\'ve lost everything that you\'re free to do anything. Nothing is static, everything is evolving, everything is falling apart."
   // var text = `tonko`;
   var charPointer           = 0;
