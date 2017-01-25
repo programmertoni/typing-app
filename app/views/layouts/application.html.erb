@@ -14,11 +14,14 @@
     </div>
   </body>
   <script>
-    $(function() {
-      let competeSwitch = $(".slider");
-      competeSwitch.click(function(){ compete = !compete; });
 
-      typingConsole("text from typingConsole() function in app/views/layouts/application.html.erb");
-    });
+    <% if @page&.content %>
+      $(function() {
+        let competeSwitch = $(".slider");
+        competeSwitch.click(function(){ compete = !compete; });
+
+        typingConsole("<%= @page.content.html_safe %>");
+      });
+    <% end %>
   </script>
 </html>

@@ -13,24 +13,20 @@
         Languages
       </button>
       <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
-        <li class="dropdown-submenu">
-          <a  class="dropdown-item" tabindex="-1" href="#">JavaScript</a>
-          <ul class="dropdown-menu">
-            <li class="dropdown-item"><a tabindex="-1" href="#">Angular</a></li>
-            <li class="dropdown-item"><a tabindex="-1" href="#">Ember</a></li>
-            <li class="dropdown-item"><a tabindex="-1" href="#">React</a></li>
-            <li class="dropdown-item"><a tabindex="-1" href="#">Other Os project</a></li>
-          </ul>
-        </li>
-        <li class="dropdown-submenu">
-          <a  class="dropdown-item" tabindex="-1" href="#">Ruby</a>
-          <ul class="dropdown-menu">
-            <li class="dropdown-item"><a tabindex="-1" href="#">Rails</a></li>
-            <li class="dropdown-item"><a tabindex="-1" href="#">Sinatra</a></li>
-            <li class="dropdown-item"><a tabindex="-1" href="#">Other Gem</a></li>
-            <li class="dropdown-item"><a tabindex="-1" href="#">Other Os project</a></li>
-          </ul>
-        </li>
+        <% @languages.each do |language| %>
+          <li class="dropdown-submenu">
+            <a  class="dropdown-item" tabindex="-1" href="#"><%= language.name %></a>
+            <ul class="dropdown-menu">
+            <% language.os_projects.each do |os_project| %>
+
+              <li class="dropdown-item">
+                <%= link_to os_project.name, language_os_project_os_page_path(language, os_project, os_project.os_pages.first) %>
+              </li>
+
+            <% end %>
+            </ul>
+          </li>
+        <% end %>
       </ul>
 
     </div>

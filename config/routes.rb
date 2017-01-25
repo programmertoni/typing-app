@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   end
 
   resources :languages, only: [:index] do
-    resources :os_projects do
+    resources :os_projects, only: [] do
       resources :os_pages, only: [:show]
     end
   end
