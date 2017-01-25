@@ -12,6 +12,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :static_pages, only: [:index]
+
   resources :books, only: [:index] do
     resources :book_pages, only: [:show]
   end

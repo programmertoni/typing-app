@@ -1,45 +1,49 @@
 <br>
 <div class="row justify-content-md-center">
   <div class="btn-group my-btn-nav-group" role="group" aria-label="Main Navigation">
-    <button type="button" class="btn btn-lg btn-secondary">Learn</button>
+    <%= link_to "Learn", static_pages_path, class: "btn btn-lg btn-secondary add-line-height #{params[:controller] == 'static_pages' ? 'active' : ''}" %>
     <%= link_to "Text", books_path, class: "btn btn-lg btn-secondary add-line-height #{params[:controller] == 'books' ? 'active' : ''}" %>
     <%= link_to "Code", languages_path, class: "btn btn-lg btn-secondary add-line-height #{params[:controller] == 'languages' ? 'active' : ''}" %>
   </div>
 
-  <div class="dropdown">
-    <button class="btn btn-lg btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      Languages
-    </button>
-    <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
-      <li class="dropdown-submenu">
-        <a  class="dropdown-item" tabindex="-1" href="#">JavaScript</a>
-        <ul class="dropdown-menu">
-          <li class="dropdown-item"><a tabindex="-1" href="#">Angular</a></li>
-          <li class="dropdown-item"><a tabindex="-1" href="#">Ember</a></li>
-          <li class="dropdown-item"><a tabindex="-1" href="#">React</a></li>
-          <li class="dropdown-item"><a tabindex="-1" href="#">Other Os project</a></li>
-        </ul>
-      </li>
-      <li class="dropdown-submenu">
-        <a  class="dropdown-item" tabindex="-1" href="#">Ruby</a>
-        <ul class="dropdown-menu">
-          <li class="dropdown-item"><a tabindex="-1" href="#">Rails</a></li>
-          <li class="dropdown-item"><a tabindex="-1" href="#">Sinatra</a></li>
-          <li class="dropdown-item"><a tabindex="-1" href="#">Other Gem</a></li>
-          <li class="dropdown-item"><a tabindex="-1" href="#">Other Os project</a></li>
-        </ul>
-      </li>
-    </ul>
+  <% unless params[:controller] == 'static_pages' %>
 
-  </div>
+    <div class="dropdown">
+      <button class="btn btn-lg btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Languages
+      </button>
+      <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+        <li class="dropdown-submenu">
+          <a  class="dropdown-item" tabindex="-1" href="#">JavaScript</a>
+          <ul class="dropdown-menu">
+            <li class="dropdown-item"><a tabindex="-1" href="#">Angular</a></li>
+            <li class="dropdown-item"><a tabindex="-1" href="#">Ember</a></li>
+            <li class="dropdown-item"><a tabindex="-1" href="#">React</a></li>
+            <li class="dropdown-item"><a tabindex="-1" href="#">Other Os project</a></li>
+          </ul>
+        </li>
+        <li class="dropdown-submenu">
+          <a  class="dropdown-item" tabindex="-1" href="#">Ruby</a>
+          <ul class="dropdown-menu">
+            <li class="dropdown-item"><a tabindex="-1" href="#">Rails</a></li>
+            <li class="dropdown-item"><a tabindex="-1" href="#">Sinatra</a></li>
+            <li class="dropdown-item"><a tabindex="-1" href="#">Other Gem</a></li>
+            <li class="dropdown-item"><a tabindex="-1" href="#">Other Os project</a></li>
+          </ul>
+        </li>
+      </ul>
 
-  <div class="compete">Compete</div>
-  <div id="switch-compete">
-    <label class="switch">
-      <input type="checkbox">
-      <div class="slider"></div>
-    </label>
-  </div>
+    </div>
+
+    <div class="compete">Compete</div>
+    <div id="switch-compete">
+      <label class="switch">
+        <input type="checkbox">
+        <div class="slider"></div>
+      </label>
+    </div>
+
+  <% end %>
 
 </div>
 
