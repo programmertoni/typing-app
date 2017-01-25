@@ -1,19 +1,19 @@
 <div class="row">
   <div class="col">
-    <h3>Book: <%= @book.name %></h3>  
+    <h3>Open Source Project: <%= @os_project.name %></h3>  
     <h4>New Page</h4>
   </div>
 </div>
 
 <div class="row">
   <div class="col">
-    <%= form_for [@book, @book_page], url: {action: "create"}, html: {class: "nifty_form"} do |f| %>
+    <%= form_for [@language, @os_project, @os_page], url: {action: "update"}, html: {class: "nifty_form"} do |f| %>
       Page_number
-      <%= f.number_field :number, value: @page_number %>
+      <%= f.number_field :number %>
       <br>
       Content
       <%= f.text_area :content, autofocus: true, rows: 20, style: 'width:100%;' %>
-      <%= f.submit "Add new Page" %>
+      <%= f.submit "Update this page" %>
     <% end %>
   </div>
 </div>

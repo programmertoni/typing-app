@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170121192627) do
+ActiveRecord::Schema.define(version: 20170125111408) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 20170121192627) do
     t.integer  "language_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "order"
     t.index ["language_id"], name: "index_os_projects_on_language_id", using: :btree
   end
 

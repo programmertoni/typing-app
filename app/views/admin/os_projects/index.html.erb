@@ -1,0 +1,41 @@
+<div class="row">
+  <div class="col">
+    <h2>All os_projects</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Open Source Project</th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @os_projects.each_with_index do |os_project, indx| %>
+          <tr>
+            <td><%= indx + 1 %>. </td>
+            <td><%= link_to os_project.name, admin_language_os_project_os_pages_path(@language, os_project), class: "btn btn-secondary" %></td>
+            <td><%= link_to 'Edit', edit_admin_language_os_project_path(@language, os_project), class: "btn btn-success" %></td>
+            <td><%= link_to 'Delete', admin_language_os_project_path(@language, os_project), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger"%></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <%= form_for @os_project, url: {action: "create"}, html: {class: "nifty_form"} do |f| %>
+      Order
+      <%= f.number_field :order, value: 99 %>
+      <br>
+      Name
+      <%= f.text_field :name, autofocus: true %>
+      <br>
+      <%= f.submit "Add new open source project" %>
+    <% end %>
+  </div>
+</div>

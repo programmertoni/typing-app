@@ -15,7 +15,7 @@
         <% @languages.each_with_index do |language, indx| %>
           <tr>
             <td><%= indx + 1 %>. </td>
-            <td><%= link_to language.name, edit_admin_language_path(language), class: "btn btn-secondary" %></td>
+            <td><%= link_to language.name, admin_language_os_projects_path(language), class: "btn btn-secondary" %></td>
             <td><%= link_to 'Edit', edit_admin_language_path(language), class: "btn btn-success" %></td>
             <td><%= link_to 'Delete', admin_language_path(language), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger"%></td>
           </tr>

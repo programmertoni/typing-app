@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="col">
+    <h3>Pages for <%= @os_project.name %></h3>  
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Page number</th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @os_project.os_pages.each do |os_page| %>
+          <tr>
+            <td><%= link_to "page #{os_page.number}", edit_admin_language_os_project_os_page_path(@language, @os_project, os_page), class: "btn btn-secondary" %></td>
+            <td><%= link_to 'Delete', admin_language_os_project_os_page_path(@language, @os_project, os_page), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col">
+    <%= link_to "Add new Page", {controller: "os_pages", action: "new", os_project_id: @os_project.id} %>
+  </div>
+</div>
+

@@ -8,11 +8,10 @@ Rails.application.routes.draw do
     end
 
     resources :languages, only: [:index, :create, :edit, :update, :destroy] do
-      resources :os_projects, only: [:index] do
-        resources :os_project_pages, only: [] 
+      resources :os_projects, only: [:index, :create, :edit, :update, :destroy] do
+        resources :os_pages, only: [:index, :new, :create, :edit, :update, :destroy]
       end
     end
 
   end
-
 end
