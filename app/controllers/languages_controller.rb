@@ -2,7 +2,7 @@ class LanguagesController < ApplicationController
 
   def index
     @languages = Language.all
-    @language  = Language.new
+    @books     = Book.all
   end
 
 end
