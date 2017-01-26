@@ -60,7 +60,7 @@ function typingConsole(text){
 
   var Timer = {};
 
-  var checkOnKeypress = function() {
+  var checkOnKeypress = function(event) {
     // execute computerBackgroundHighlighter only when first key is pressed
     if (charPointer === 0) {
       Timer.startTimer = new Date().getTime();
