@@ -1,64 +1,68 @@
 <br>
-<div class="row justify-content-md-center">
-  <div class="btn-group my-btn-nav-group" role="group" aria-label="Main Navigation">
-    <%= link_to "Learn", static_pages_path, class: "btn btn-lg btn-secondary add-line-height #{params[:controller] == 'static_pages' ? 'active' : ''}" %>
-    <%= link_to "Text", books_path, class: "btn btn-lg btn-secondary add-line-height #{params[:controller] == 'books' ? 'active' : ''}" %>
-    <%= link_to "Code", languages_path, class: "btn btn-lg btn-secondary add-line-height #{params[:controller] == 'languages' ? 'active' : ''}" %>
+<div class="row">
+  <div class="col-md-4 offset-md-1">
+    <div class="btn-group my-btn-nav-group" role="group" aria-label="Main Navigation">
+      <%= link_to "Learn", static_pages_path, class: "btn btn-lg btn-secondary add-line-height #{params[:controller] == 'static_pages' ? 'active' : ''}" %>
+      <%= link_to "Text", books_path, class: "btn btn-lg btn-secondary add-line-height #{params[:controller] == 'books' || params[:controller] == 'book_pages' ? 'active' : ''}" %>
+      <%= link_to "Code", languages_path, class: "btn btn-lg btn-secondary add-line-height #{params[:controller] == 'languages' || params[:controller] == 'os_pages' ? 'active' : ''}" %>
+    </div>
   </div>
 
-  <% unless params[:controller] == 'static_pages' %>
-    <% if params[:controller] == 'languages' %>
-      <div class="dropdown">
-        <button class="btn btn-lg btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Languages
-        </button>
-        <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
-          <% @languages.each do |language| %>
-            <li class="dropdown-submenu">
-              <a  class="dropdown-item" tabindex="-1" href="#"><%= language.name %></a>
-              <ul class="dropdown-menu">
-                <% language.os_projects.each do |os_project| %>
+  <div class="col-md-3">
+    <% unless params[:controller] == 'static_pages' %>
+      <% if params[:controller] == 'languages' || params[:controller] == 'os_pages' %>
+        <div class="dropdown">
+          <button class="btn btn-lg btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Languages
+          </button>
+          <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+            <% @languages.each do |language| %>
+              <li class="dropdown-submenu">
+                <a  class="dropdown-item" tabindex="-1" href="#"><%= language.name %></a>
+                <ul class="dropdown-menu">
+                  <% language.os_projects.each do |os_project| %>
 
-                  <li class="dropdown-item">
-                    <%= link_to os_project.name, language_os_project_os_page_path(language, os_project, os_project.os_pages.first) %>
-                  </li>
+                    <li class="dropdown-item">
+                      <%= link_to os_project.name, language_os_project_os_page_path(language, os_project, os_project.os_pages.first) %>
+                    </li>
 
-                <% end %>
-              </ul>
-            </li>
+                  <% end %>
+                </ul>
+              </li>
+            <% end %>
           <% end %>
-        <% end %>
 
-    <% if params[:controller] == 'books' %>
-      <div class="dropdown">
-        <button class="btn btn-lg btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Practice
-        </button>
-        <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
-          <li class="dropdown-item"><a href="#">Random generated words</a></li>
-          <li class="dropdown-submenu">
-            <a  class="dropdown-item" tabindex="-1" href="#">Books</a>
-            <ul class="dropdown-menu">
-              <% @books.each do |book| %>
-                  <li class="dropdown-item">
-                    <%= link_to book.name, book_book_page_path(book, book.book_pages.first) %>
-                  </li>
-                <% end %>
-            </ul>
-          </li>
+          <% if params[:controller] == 'books' || params[:controller] == 'book_pages' %>
+            <div class="dropdown">
+              <button class="btn btn-lg btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Practice
+              </button>
+              <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+                <li class="dropdown-item"><a href="#">Random generated words</a></li>
+                <li class="dropdown-submenu">
+                  <a  class="dropdown-item" tabindex="-1" href="#">Books</a>
+                  <ul class="dropdown-menu">
+                    <% @books.each do |book| %>
+                      <li class="dropdown-item">
+                        <%= link_to book.name, book_book_page_path(book, book.book_pages.first) %>
+                      </li>
+                    <% end %>
+                  </ul>
+                </li>
+              <% end %>
+              </ul>
+
+            </div>
+        </div>
+
+        <div class="compete">Compete</div>
+        <div id="switch-compete">
+          <label class="switch">
+            <input type="checkbox">
+            <div class="slider"></div>
+          </label>
       <% end %>
-        </ul>
 
-      </div>
-
-      <div class="compete">Compete</div>
-      <div id="switch-compete">
-        <label class="switch">
-          <input type="checkbox">
-          <div class="slider"></div>
-        </label>
-      </div>
-    <% end %>
-
-      </div>
+  </div>
+</div>
 
