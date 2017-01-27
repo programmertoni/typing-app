@@ -1,13 +1,14 @@
 class BookPagesController < ApplicationController
-  def show
-    @books           = Book.all
-    @book            = Book.find(params[:book_id])
-    @all_page_ids    = @book.book_pages.order(:number).map(&:id)
-    current_page_num = params['page_counter'].to_i
-    page_id          = @all_page_ids[current_page_num-1]
-    @page            = BookPage.find(page_id)
 
-    params['next_page']    = @all_page_ids[current_page_num]
-    params['page_counter'] = current_page_num + 1
+  def show
+    # http://localhost:3000/books/14/book_pages/30
+
+    @book      = Book.find(params[:book_id])
+    @book_page = @book.book_pages.order(:number).find(params[:id])
+
+    respond_to do |format|
+      format.json { render json: { page_content: @book_page.content }} 
+    end
   end
+
 end

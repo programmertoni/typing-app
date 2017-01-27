@@ -1,3 +1,4 @@
+# TODO delete this controller
 class OsPagesController < ApplicationController
 
   def show

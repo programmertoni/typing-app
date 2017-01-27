@@ -11,17 +11,39 @@
 
       <%= yield %>
 
+      <div id="type-console">
+        <%= render 'partials/main' %>
+      </div>
+
     </div>
   </body>
   <script>
 
-    <% if @page&.content %>
-      $(function() {
-        let competeSwitch = $(".slider");
-        competeSwitch.click(function(){ compete = !compete; });
 
-        typingConsole("<%= @page.content.html_safe %>");
-      });
-    <% end %>
+var typeConsole = new Vue({
+  el: '#type-console',
+  data: {
+    bookId: <%= @book_id %>,
+    pageIds: <%= @book_page_ids %>,
+    content: "",
+    stats: "",
+  },
+  methods: {
+    fetchPageContent: function() {
+      if (this.pageIds.length > 0) {
+        this.$http.get(`/books/${this.bookId}/book_pages/${this.pageIds.shift()}.json`).then((response) => {
+          typingConsole(response.data.page_content)
+        }, (response) => {
+          alert("We had trouble loading content")
+        });
+      } else {
+        this.stats = "Great. You have finished with this exercises."
+      }
+    }
+  }
+})
+
+typeConsole.fetchPageContent();
+
   </script>
 </html>

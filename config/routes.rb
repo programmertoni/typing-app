@@ -14,13 +14,11 @@ Rails.application.routes.draw do
 
   resources :static_pages, only: [:index]
 
-  resources :books, only: [:index] do
+  resources :books, only: [:index, :show] do
     resources :book_pages, only: [:show]
   end
 
   resources :languages, only: [:index] do
-    resources :os_projects, only: [] do
-      resources :os_pages, only: [:show]
-    end
+    resources :os_projects, only: [:index, :show]
   end
 end
