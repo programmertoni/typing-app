@@ -42,18 +42,26 @@ var typeConsole = new Vue({
   data: {
     bookId: <%= @book_id %>,
     pageIds: <%= @book_page_ids %>,
+    pagesSize: <%= @book_page_ids.size %>,
+    pageCounter: 0,
+    currentPercentage: '0%',
     content: "",
     stats: false,
     statsMsg: "",
     userSpeedMsq: "",
     computerSpeedMsg: "",
-    finishExercise: ""
+    finishExercise: "",
   },
   created: function(){
     this.fetchPageContent();
   },
+  computed: {
+    computePagePercentage: function(){
+      return this.currentPercentage = String(Math.round(this.pageCounter / this.pagesSize * 100)) + '%';
+    }
+  },
   methods: {
-    fetchPageContent: function() {
+    fetchPageContent: function(){
       if (this.pageIds.length > 0) {
         this.$http.get(`/books/${this.bookId}/book_pages/${this.pageIds.shift()}.json`).then((response) => {
           this.typingConsole(response.data.page_content)
@@ -169,6 +177,7 @@ var typeConsole = new Vue({
           localStorage.setItem("userWPM", wordsPerMinute);
 
           // display stats
+          vm.pageCounter += 1;
           vm.stats            = true;
           vm.statsMsg         = `You typed ${(lastSpanIndex)-errors} characters correctly and typed ${errors} characters incorectly!`;
           vm.userSpeedMsq     = `Your speed: ${wordsPerMinute} words per minute!`;

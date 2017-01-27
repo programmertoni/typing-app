@@ -1,3 +1,5 @@
 <div class="progress">
-  <div class="progress-bar" role="progressbar" style="width: 25%; height: 3px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+  <div class="progress-bar" role="progressbar" v-bind:style="{ width: computePagePercentage, height: '3px' }" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
 </div>
+
+
