@@ -17,7 +17,7 @@ function typingConsole(text){
     return secondsInMinute * millisecundsInSecond / wordPerMinute;
   }
 
-  var computerDelayTime     = computerTimeout(computerWordPerMinute * toCharacter);
+  var computerDelayTime = computerTimeout(computerWordPerMinute * toCharacter);
 
   // this is parsing text and giving it spans
   for(let i=0; i<textLength; i++) {
@@ -64,9 +64,9 @@ function typingConsole(text){
       var userChar     = String.fromCharCode(userKeyCode);
       currentCharacter = document.getElementById(`char-${charPointer}`).innerHTML;
 
+      // handles event when user presses space
       if(event.type === 'keydown') {
         if(!((userChar === ' ') && (currentCharacter === ' '))) {
-          //continue with keydown event if user presses space
           return;
         }
       }
@@ -76,7 +76,6 @@ function typingConsole(text){
       document.getElementById(`char-${charPointer}`).className = currentClasses.replace("cursor", "");
 
       // highlights correct/wrong user input
-
       if (userChar === currentCharacter) {
         document.getElementById(`char-${charPointer}`).className += " right-char";
 
@@ -102,43 +101,9 @@ function typingConsole(text){
 
       localStorage.setItem("userWPM", wordsPerMinute);
 
-
-      // generate next page link
-      let windowLocation = window.location;
-      // let server         = windowLocation.host;
-      let restParams     = windowLocation.pathname.split('/');
-      let queryString    = windowLocation.search
-      restParams.pop();
-
-      var getParameterByName = function(name, queryStr) {
-        name = name.replace(/[\[\]]/g, "\\$&");
-        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-        results = regex.exec(queryStr);
-        if (!results) return null;
-        if (!results[2]) return '';
-        return decodeURIComponent(results[2].replace(/\+/g, " "));
-      }
-
-      nextPage = getParameterByName('next_page', queryString);
-      restParams.push(nextPage);
-      pageUrl = `${restParams.join('/')}${queryString}`;
-
       // display stats
       stats.innerHTML = `You typed ${(lastSpanIndex)-errors} characters correctly and typed ${errors} characters incorectly!  <br>Your speed: ${wordsPerMinute} words per minute! <br>Computer speed: ${computerWordPerMinute} <br> press <strong>n</strong> to go to the next page`;
-
-      // show next page button/link
-      // var nextPageLink       = document.getElementById('next-page');
-      // nextPageLink.className = 'btn btn-secondary';
-      // nextPageLink.href      = pageUrl;
-      //
-      // append link node
-      // document.getElementById('stats').appendChild(a);
     } else if ((charPointer+1) >= lastSpanIndex) {
-        console.log(event.key)
-      if (event.key == 'n') {
-        Turbolinks.visit(pageUrl);
-        console.log(pageUrl)
-      }
       return;
     }
 
