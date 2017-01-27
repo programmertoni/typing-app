@@ -1,17 +1,4 @@
 function typingConsole(text){
-
-  // var text = `
-  // def define_model_callbacks(*callbacks)
-  //   options = callbacks.extract_options!
-  //   options = {
-  //
-  //     terminator: deprecated_false_terminator,
-  //     skip_after_callbacks_if_terminated: true,
-  //     scope: [:kind, :name],
-  //     only: [:before, :around, :after]
-  //   }.merge!(options)`;
-  // var text = "after disaster can we be resurrected. It\'s only after you\'ve lost everything that you\'re free to do anything. Nothing is static, everything is evolving, everything is falling apart."
-  // var text = `tonko`;
   var charPointer           = 0;
   var errors                = 0;
   var charIndex             = 0;
@@ -21,6 +8,8 @@ function typingConsole(text){
   var defaultWordPerMinute  = 50;
   var computerWordPerMinute = localStorage.userWPM || defaultWordPerMinute;
   var toCharacter           = 5;
+  var pageUrl               = window.location.href;
+  var currentCharacter;
 
   var computerTimeout = function(wordPerMinute) {
     let secondsInMinute      = 60;
@@ -71,9 +60,9 @@ function typingConsole(text){
     }
 
     if (charPointer < lastSpanIndex) {
-      var userKeyCode      = event.which;
-      var userChar         = String.fromCharCode(userKeyCode);
-      var currentCharacter = document.getElementById(`char-${charPointer}`).innerHTML;
+      var userKeyCode  = event.which;
+      var userChar     = String.fromCharCode(userKeyCode);
+      currentCharacter = document.getElementById(`char-${charPointer}`).innerHTML;
 
       if(event.type === 'keydown') {
         if(!((userChar === ' ') && (currentCharacter === ' '))) {
@@ -113,8 +102,43 @@ function typingConsole(text){
 
       localStorage.setItem("userWPM", wordsPerMinute);
 
-      document.getElementById("stats").innerHTML = `You typed ${(lastSpanIndex)-errors} characters correctly and typed ${errors} characters incorectly!  <br>Your speed: ${wordsPerMinute} words per minute! <br>Computer speed: ${computerWordPerMinute}`;
+
+      // generate next page link
+      let windowLocation = window.location;
+      // let server         = windowLocation.host;
+      let restParams     = windowLocation.pathname.split('/');
+      let queryString    = windowLocation.search
+      restParams.pop();
+
+      var getParameterByName = function(name, queryStr) {
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(queryStr);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+      }
+
+      nextPage = getParameterByName('next_page', queryString);
+      restParams.push(nextPage);
+      pageUrl = `${restParams.join('/')}${queryString}`;
+
+      // display stats
+      stats.innerHTML = `You typed ${(lastSpanIndex)-errors} characters correctly and typed ${errors} characters incorectly!  <br>Your speed: ${wordsPerMinute} words per minute! <br>Computer speed: ${computerWordPerMinute} <br> press <strong>n</strong> to go to the next page`;
+
+      // show next page button/link
+      // var nextPageLink       = document.getElementById('next-page');
+      // nextPageLink.className = 'btn btn-secondary';
+      // nextPageLink.href      = pageUrl;
+      //
+      // append link node
+      // document.getElementById('stats').appendChild(a);
     } else if ((charPointer+1) >= lastSpanIndex) {
+        console.log(event.key)
+      if (event.key == 'n') {
+        Turbolinks.visit(pageUrl);
+        console.log(pageUrl)
+      }
       return;
     }
 

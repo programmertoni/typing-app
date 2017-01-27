@@ -42,9 +42,15 @@
                 <li class="dropdown-submenu">
                   <a  class="dropdown-item" tabindex="-1" href="#">Books</a>
                   <ul class="dropdown-menu">
+                    <!-- <p>TODO cache this </p> -->
                     <% @books.each do |book| %>
+                      <% all_page_ids = book.book_pages.order(:number).map(&:id) %>
+                      <% pages_count  = all_page_ids.size %>
+                      <% first_page   = 1 %>
+                      <% page_counter = first_page %>
+                      <% next_page_id = all_page_ids[page_counter] %>
                       <li class="dropdown-item">
-                        <%= link_to book.name, book_book_page_path(book, book.book_pages.first) %>
+                        <%= link_to book.name, book_book_page_path(book_id: book, id: book.book_pages.first, page_counter: page_counter, pages_count: pages_count, next_page: next_page_id) %>
                       </li>
                     <% end %>
                   </ul>

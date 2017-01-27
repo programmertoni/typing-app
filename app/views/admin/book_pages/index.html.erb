@@ -16,7 +16,7 @@
         </tr>
       </thead>
       <tbody>
-        <% @book.book_pages.each do |book_page| %>
+        <% @book_pages.each do |book_page| %>
           <tr>
             <td><%= link_to "page #{book_page.number}", edit_admin_book_book_page_path(@book, book_page), class: "btn btn-secondary" %></td>
             <td><%= link_to 'Delete', admin_book_book_page_path(@book, book_page), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %></td>

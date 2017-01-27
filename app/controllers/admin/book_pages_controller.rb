@@ -3,6 +3,7 @@ class Admin::BookPagesController < ApplicationController
 
   def index
     @book = Book.find(params[:book_id])
+    @book_pages = @book.book_pages.order(:number)
   end
 
   def new
