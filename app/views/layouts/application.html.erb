@@ -13,6 +13,23 @@
 
       <div id="type-console">
         <%= render 'partials/main' %>
+
+        <div v-show="stats">
+
+          <div class="alert alert-info" role="alert">
+            {{ statsMsg }} <br> {{ userSpeedMsq }} <br> {{ computerSpeedMsg }} <br>
+
+          </div>
+            Press <strong>any Key</strong> to continue
+
+        </div>
+
+        <div v-show="finishExercise">
+          <div class="alert alert-success" role="alert">
+            <strong>Awesome!</strong> You are finished with this section.
+            <br>
+          </div>
+        </div>
       </div>
 
     </div>
@@ -26,7 +43,11 @@ var typeConsole = new Vue({
     bookId: <%= @book_id %>,
     pageIds: <%= @book_page_ids %>,
     content: "",
-    stats: "",
+    stats: false,
+    statsMsg: "",
+    userSpeedMsq: "",
+    computerSpeedMsg: "",
+    finishExercise: ""
   },
   created: function(){
     this.fetchPageContent();
@@ -37,13 +58,14 @@ var typeConsole = new Vue({
         this.$http.get(`/books/${this.bookId}/book_pages/${this.pageIds.shift()}.json`).then((response) => {
           this.typingConsole(response.data.page_content)
         }, (response) => {
-          alert("We had trouble loading content")
+          alert("We had trouble loading content. Please reload the page.")
         });
       } else {
-        this.stats = "Great. You have finished with this exercises."
+        this.finishExercise = true;
       }
     },
     typingConsole: function(text) {
+      vm = this;
       var charPointer           = 0;
       var errors                = 0;
       var charIndex             = 0;
@@ -147,9 +169,13 @@ var typeConsole = new Vue({
           localStorage.setItem("userWPM", wordsPerMinute);
 
           // display stats
-          stats.innerHTML = `You typed ${(lastSpanIndex)-errors} characters correctly and typed ${errors} characters incorectly!  <br>Your speed: ${wordsPerMinute} words per minute! <br>Computer speed: ${computerWordPerMinute} <br> press <strong>n</strong> to go to the next page`;
+          vm.stats            = true;
+          vm.statsMsg         = `You typed ${(lastSpanIndex)-errors} characters correctly and typed ${errors} characters incorectly!`;
+          vm.userSpeedMsq     = `Your speed: ${wordsPerMinute} words per minute!`;
+          vm.computerSpeedMsg = `Computer speed: ${computerWordPerMinute} `;
         } else if ((charPointer) == lastSpanIndex) {
           typeConsole.fetchPageContent();
+          vm.stats = "";
         } else if ((charPointer+1) > lastSpanIndex) {
           return;
         }
@@ -163,7 +189,6 @@ var typeConsole = new Vue({
 
       document.body.addEventListener('keypress', checkOnKeypress);
       document.body.addEventListener('keydown', checkOnKeypress);
-
     }
   }
 })
