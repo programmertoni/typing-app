@@ -14,6 +14,8 @@
 //= require jquery_ujs
 //= require tether
 //= require bootstrap-sprockets
+//= require vue
+//= require vue-resource
 //= require_tree .
 
 var compete = false;
