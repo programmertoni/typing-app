@@ -55,14 +55,9 @@
             </div>
         </div>
 
-        <div class="compete">Compete</div>
-        <div id="switch-compete">
-          <label class="switch">
-            <input type="checkbox">
-            <div class="slider"></div>
-          </label>
-      <% end %>
+        <div @click="competeToggle" for="compete">Compete {{ compete }}</div>
+        
 
+      <% end %>
   </div>
-</div>
 

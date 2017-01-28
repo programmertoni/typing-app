@@ -34,8 +34,9 @@
 
     </div>
   </body>
-  <script>
 
+
+  <script>
 
 var typeConsole = new Vue({
   el: '#type-console',
@@ -51,6 +52,9 @@ var typeConsole = new Vue({
     userSpeedMsq: "",
     computerSpeedMsg: "",
     finishExercise: "",
+    compete: (localStorage.compete || false),
+    userNotFinished: true,
+    userFinished: ! this.userNotFinished
   },
   created: function(){
     this.fetchPageContent();
@@ -59,8 +63,13 @@ var typeConsole = new Vue({
     computePagePercentage: function(){
       return this.currentPercentage = String(Math.round(this.pageCounter / this.pagesSize * 100)) + '%';
     }
+
   },
   methods: {
+    competeToggle: function(){
+      this.compete = ! this.compete;
+      localStorage.setItem("compete", this.compete);
+    },
     fetchPageContent: function(){
       if (this.pageIds.length > 0) {
         this.$http.get(`/books/${this.bookId}/book_pages/${this.pageIds.shift()}.json`).then((response) => {
@@ -107,31 +116,34 @@ var typeConsole = new Vue({
       }
 
       var lastSpanIndex = charIndex;
+      var computerIndex = 0;
+      var timeouts = [];
+      // var myTimeOut;
 
       document.getElementById("text").innerHTML = textInSpanWithIds;
       document.getElementById("char-0").className += "cursor";
 
-      var computerBackgroundHighlighter = function(currentIndex) {
-        if(currentIndex < lastSpanIndex) {
-          document.getElementById(`char-${currentIndex}`).className += ' computer';
-          currentIndex++;
+      var computerBackgroundHighlighter = function(e) {
+        timeouts.push(setTimeout(function(){
+          if(computerIndex < lastSpanIndex && vm.userNotFinished) {
 
-          window.setTimeout(function(){
-            computerBackgroundHighlighter(currentIndex);
-          }, computerDelayTime);
-        }
+            if(e.type === 'keypress') {
+              document.getElementById(`char-${computerIndex}`).className += ' computer';
+              computerIndex++;
+              computerBackgroundHighlighter(e);
+            }
+          }
+        }, computerDelayTime))
       }
 
-      var Timer = {};
+      var timer = {};
 
       var checkOnKeypress = function(event) {
         // execute computerBackgroundHighlighter only when first key is pressed
         if (charPointer === 0) {
-          Timer.startTimer = new Date().getTime();
+          timer.startTimer = new Date().getTime();
 
-          if (compete) {
-            computerBackgroundHighlighter(0);
-          }
+          if (vm.compete) { computerBackgroundHighlighter(event); }
         }
 
         if (charPointer < lastSpanIndex) {
@@ -167,8 +179,15 @@ var typeConsole = new Vue({
 
         // calculate times and display stats
         if ((charPointer+1) === lastSpanIndex) {
-          Timer.endTimer         = new Date().getTime();
-          let timeToFinishTyping = (Timer.endTimer - Timer.startTimer) / 1000;
+          // clear (setTimeout) parallel highlighting from previous page
+          vm.userNotFinished = false;
+          for (var i = 0; i < timeouts.length; i++) {
+            clearTimeout(timeouts[i]);
+          }
+          timeouts = [];
+
+          timer.endTimer         = new Date().getTime();
+          let timeToFinishTyping = (timer.endTimer - timer.startTimer) / 1000;
           let numOfChar          = lastSpanIndex;
           let minute             = 60;
           let charsPerMinute     = (numOfChar * 60) / timeToFinishTyping;
@@ -183,6 +202,7 @@ var typeConsole = new Vue({
           vm.userSpeedMsq     = `Your speed: ${wordsPerMinute} words per minute!`;
           vm.computerSpeedMsg = `Computer speed: ${computerWordPerMinute} `;
         } else if ((charPointer) == lastSpanIndex) {
+          vm.userNotFinished     = true;
           typeConsole.fetchPageContent();
           vm.stats = "";
         } else if ((charPointer+1) > lastSpanIndex) {
@@ -201,7 +221,6 @@ var typeConsole = new Vue({
     }
   }
 })
-
 
   </script>
 </html>
