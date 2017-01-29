@@ -55,7 +55,13 @@
             </div>
         </div>
 
-        <div @click="competeToggle" for="compete">Compete {{ compete }}</div>
+
+        <button @click="competeToggle" type="button" v-bind:class="{ 'btn-outline-success': compete, 'btn-outline-secondary': !compete }" class="btn btn-lg btn">Compete:
+          <i v-bind:class="{ 'fa fa-check': compete, 'fa fa-close': !compete }"></i>
+        </button>
+
+
+        <!-- <div @click="competeToggle" for="compete">Compete {{ compete }}</div> -->
 
       <% end %>
   </div>
