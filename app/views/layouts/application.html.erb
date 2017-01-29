@@ -118,7 +118,6 @@ var typeConsole = new Vue({
       var lastSpanIndex = charIndex;
       var computerIndex = 0;
       var timeouts = [];
-      // var myTimeOut;
 
       document.getElementById("text").innerHTML = textInSpanWithIds;
       document.getElementById("char-0").className += "cursor";
@@ -147,12 +146,17 @@ var typeConsole = new Vue({
         }
 
         if (charPointer < lastSpanIndex) {
-          var userKeyCode  = event.which;
-          var userChar     = String.fromCharCode(userKeyCode);
-          currentCharacter = document.getElementById(`char-${charPointer}`).innerHTML;
 
-          // handles event when user presses space
-          if(event.type === 'keydown') {
+          let userKeyCode       = event.which;
+          let userChar          = String.fromCharCode(userKeyCode);
+          currentCharacter      = document.getElementById(`char-${charPointer}`).innerHTML;
+
+          // handles chrome weird 'space' hijacking
+          var previousChar = function(){ return charPointer ?  document.getElementById(`char-${charPointer-1}`).innerHTML : document.getElementById(`char-${charPointer}`).innerHTML; };
+          let previousCharacter = previousChar();
+          if (event.type == 'keypress') {
+            if((userChar === ' ') && previousCharacter === ' ') { return }
+          } else {
             if(!((userChar === ' ') && (currentCharacter === ' '))) {
               return;
             }
