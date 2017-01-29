@@ -73,7 +73,7 @@ var typeConsole = new Vue({
     fetchPageContent: function(){
       if (this.pageIds.length > 0) {
         this.$http.get(`/books/${this.bookId}/book_pages/${this.pageIds.shift()}.json`).then((response) => {
-          this.typingConsole(response.data.page_content)
+          this.typingConsole(response.data.page_content);
         }, (response) => {
           alert("We had trouble loading content. Please reload the page.")
         });
@@ -105,7 +105,7 @@ var typeConsole = new Vue({
 
       // this is parsing text and giving it spans
       for(let i=0; i<textLength; i++) {
-        if (text[i] == "\n") {
+        if ((text[i] === "\n") || text[i] === "\r") {
           textInSpanWithIds += text[i]
         }else if (((text[i] === " ") && (text[i-1] === " ")) || ((text[i] === " ") && (text[i-1] == "\n"))) {
           textInSpanWithIds += text[i]
