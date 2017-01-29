@@ -146,10 +146,9 @@ var typeConsole = new Vue({
         }
 
         if (charPointer < lastSpanIndex) {
-
           let userKeyCode       = event.which;
           let userChar          = String.fromCharCode(userKeyCode);
-          currentCharacter      = document.getElementById(`char-${charPointer}`).innerHTML;
+          currentCharacter      = $(`#char-${charPointer}`).text();
 
           // handles chrome weird 'space' hijacking
           var previousChar = function(){ return charPointer ?  document.getElementById(`char-${charPointer-1}`).innerHTML : document.getElementById(`char-${charPointer}`).innerHTML; };
