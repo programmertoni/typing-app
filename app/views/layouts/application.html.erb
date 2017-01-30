@@ -52,7 +52,7 @@ var typeConsole = new Vue({
     userSpeedMsq: "",
     computerSpeedMsg: "",
     finishExercise: "",
-    compete: (localStorage.compete || false),
+    compete: (localStorage.compete || '0'),
     userNotFinished: true,
     userFinished: ! this.userNotFinished
   },
@@ -67,7 +67,7 @@ var typeConsole = new Vue({
   },
   methods: {
     competeToggle: function(){
-      this.compete = ! this.compete;
+      (this.compete == '0') ? this.compete = '1' : this.compete = '0'
       localStorage.setItem("compete", this.compete);
     },
     fetchPageContent: function(){
@@ -142,7 +142,7 @@ var typeConsole = new Vue({
         if (charPointer === 0) {
           timer.startTimer = new Date().getTime();
 
-          if (vm.compete === "true" || vm.compete === true) { computerBackgroundHighlighter(event); }
+          if (Number(vm.compete)) { computerBackgroundHighlighter(event) }
         }
 
         if (charPointer < lastSpanIndex) {
