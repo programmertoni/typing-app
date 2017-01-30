@@ -1,7 +1,7 @@
 <div class="row main__nav__row">
   <div class="col-md-4 offset-md-1">
     <div class="btn-group my-btn-nav-group" role="group" aria-label="Main Navigation">
-      <%= link_to "Learn", static_pages_path, class: "btn btn-lg btn-secondary #{params[:controller] == 'static_pages' ? 'active' : ''}" %>
+      <%= link_to "Learn", learn_path, class: "btn btn-lg btn-secondary #{params[:controller] == 'static_pages' ? 'active' : ''}" %>
       <%= link_to "Text", books_path, class: "btn btn-lg btn-secondary #{params[:controller] == 'books' || params[:controller] == 'book_pages' ? 'active' : ''}" %>
       <%= link_to "Code", languages_path, class: "btn btn-lg btn-secondary #{params[:controller] == 'languages' || params[:controller] == 'os_projects' ? 'active' : ''}" %>
     </div>

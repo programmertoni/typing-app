@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  root to: 'static_pages#index'
+  get '/learn', to: 'static_pages#index'
+
   namespace :admin do
     resources :books, only: [:index, :create, :edit, :update, :destroy] do
       resources :book_pages, only: [:index, :new, :create, :edit, :update, :destroy]
@@ -11,8 +14,6 @@ Rails.application.routes.draw do
       end
     end
   end
-
-  resources :static_pages, only: [:index]
 
   resources :books, only: [:index, :show] do
     resources :book_pages, only: [:show]
