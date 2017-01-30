@@ -41,8 +41,14 @@
 
 // main navigation
 
-.add-line-height {
-  line-height: 1.47;
+.main__nav__row {
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.compete__button {
+  position: relative;
+  float: right;
 }
 
 .my-btn-nav-group {

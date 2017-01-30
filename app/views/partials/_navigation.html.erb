@@ -1,16 +1,15 @@
-<br>
-<div class="row">
+<div class="row main__nav__row">
   <div class="col-md-4 offset-md-1">
     <div class="btn-group my-btn-nav-group" role="group" aria-label="Main Navigation">
-      <%= link_to "Learn", static_pages_path, class: "btn btn-lg btn-secondary add-line-height #{params[:controller] == 'static_pages' ? 'active' : ''}" %>
-      <%= link_to "Text", books_path, class: "btn btn-lg btn-secondary add-line-height #{params[:controller] == 'books' || params[:controller] == 'book_pages' ? 'active' : ''}" %>
-      <%= link_to "Code", languages_path, class: "btn btn-lg btn-secondary add-line-height #{params[:controller] == 'languages' || params[:controller] == 'os_projects' ? 'active' : ''}" %>
+      <%= link_to "Learn", static_pages_path, class: "btn btn-lg btn-secondary #{params[:controller] == 'static_pages' ? 'active' : ''}" %>
+      <%= link_to "Text", books_path, class: "btn btn-lg btn-secondary #{params[:controller] == 'books' || params[:controller] == 'book_pages' ? 'active' : ''}" %>
+      <%= link_to "Code", languages_path, class: "btn btn-lg btn-secondary #{params[:controller] == 'languages' || params[:controller] == 'os_projects' ? 'active' : ''}" %>
     </div>
   </div>
 
-  <div class="col-md-3">
     <% unless params[:controller] == 'static_pages' %>
-      <% if params[:controller] == 'languages' || params[:controller] == 'os_projects' %>
+      <div class="md-col-1">
+        <% if %w(languages os_projects).include? params[:controller] %>
         <div class="dropdown">
           <button class="btn btn-lg btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Languages
@@ -29,10 +28,11 @@
                 </ul>
               </li>
             <% end %>
+          </ul>
           <% end %>
 
           <% if params[:controller] == 'books' %>
-            <div class="dropdown">
+              <div class="dropdown">
               <button class="btn btn-lg btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Practice
               </button>
@@ -49,16 +49,17 @@
                     <% end %>
                   </ul>
                 </li>
-              <% end %>
               </ul>
+              <% end %>
 
-            </div>
+        </div>
         </div>
 
-
-        <button @click="competeToggle" type="button" v-bind:class="{ 'btn-outline-success': Number(compete), 'btn-outline-secondary': !Number(compete) }" class="btn btn-lg btn">Compete:
-          <i v-bind:class="{ 'fa fa-check': Number(compete), 'fa fa-close': !Number(compete) }"></i>
-        </button>
+        <div class="md-col-2 offset-md-3">
+          <button @click="competeToggle" type="button" v-bind:class="{ 'btn-outline-success': Number(compete), 'btn-outline-secondary': !Number(compete) }" class="btn btn-lg btn">Compete:
+            <i v-bind:class="{ 'fa fa-check': Number(compete), 'fa fa-close': !Number(compete) }"></i>
+          </button>
+        </div>
       <% end %>
   </div>
 
