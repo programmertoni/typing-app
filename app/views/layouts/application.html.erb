@@ -26,7 +26,6 @@
 
         <% unless %w(books languages static_pages).include? params['controller'] %>
           <div v-show="finishExercise">
-          <% binding.pry %>
             <div class="alert alert-success" role="alert">
               <strong>Awesome!</strong> You are finished with this section.
               <br>
