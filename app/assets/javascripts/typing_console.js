@@ -7,6 +7,8 @@ window.addEventListener('load', function () {
       resourceId: htmlData.data('id'),
       pageIds: htmlData.data('page-ids'),
       pagesSize: htmlData.data('pages-size'),
+      // Todo make os_pages work
+      osProjectId: htmlData.data(''),
       pageCounter: 0,
       currentPercentage: '0%',
       content: "",
@@ -37,8 +39,14 @@ window.addEventListener('load', function () {
       },
       fetchPageContent: function(){
         if (this.pageIds.length > 0) {
-          // this.$http.get(`/books/${this.resourceId}/book_pages/${this.pageIds.shift()}.json`).then((response) => {
-          this.$http.get(`/books/${this.resourceId}/book_pages/${this.pageIds.shift()}.json`).then((response) => {
+          var url;
+          if (htmlData.data('current-page') === 'book') {
+            url = `/books/${this.resourceId}/book_pages/${this.pageIds.shift()}.json`;
+          } else {
+            url = `/languages/#{this.resourceId}/os_projects/#{this.osProjectId}/os_pages/#{this.pageIds.shift()}.json`
+          }
+
+          this.$http.get(url).then((response) => {
             this.typingConsole(response.data.page_content);
           }, (response) => {
             alert("We had trouble loading content. Please reload the page.")
