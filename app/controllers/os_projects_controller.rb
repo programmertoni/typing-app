@@ -4,4 +4,5 @@ class OsProjectsController < ApplicationController
     @os_projects = OsProject.all
   end
 
+
 end
