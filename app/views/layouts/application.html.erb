@@ -12,7 +12,7 @@
       <div id="type-console">
         <%= render 'partials/main' %>
 
-        <div v-show="stats">
+        <div v-show="stats" v-cloak>
 
           <div class="alert alert-info" role="alert">
             {{ statsMsg }} <br> {{ userSpeedMsq }} <br> {{ computerSpeedMsg }} <br>
@@ -22,7 +22,7 @@
 
         </div>
 
-          <div v-show="finishExercise">
+          <div v-show="finishExercise" v-cloak>
             <div class="alert alert-success" role="alert">
               <strong>Awesome!</strong> You are finished with this section.
               <br>

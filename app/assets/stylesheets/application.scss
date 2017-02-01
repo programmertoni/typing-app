@@ -16,6 +16,10 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
+[v-cloak] {
+  display: none;
+}
+
 // typing-console
 .computer {
   background-color: #BDDBFF;
