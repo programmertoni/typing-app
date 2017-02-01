@@ -11,15 +11,16 @@
       <div id="type-console">
         <%= render 'partials/main' %>
 
-        <div v-show="stats" v-cloak>
-          <div class="alert alert-info" role="alert">
-            {{ statsMsg }} <br> {{ userSpeedMsq }} <br> {{ computerSpeedMsg }} <br>
-          </div>
-          Press <strong>any Key</strong> to continue
-        </div>
-          <div v-show="finishExercise" v-cloak>
-            <div class="alert alert-success" role="alert">
-              <strong>Awesome!</strong> You are finished with this section.
+          <div v-show="!finishExercise" v-cloak>
+            <div class="alert alert-success text-center" id="section-finished" role="alert">
+              <br>
+              <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+              <br>
+              <br>
+              <strong>Awesome!</strong> You are finished with {{ pageParentName }}.
+              <br>
+              <p>Please choose another Book or Open Source Project.</p>
+              <br>
               <br>
             </div>
           </div>

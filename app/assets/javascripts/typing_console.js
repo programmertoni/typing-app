@@ -4,6 +4,7 @@ window.addEventListener('load', function () {
   var typeConsole = new Vue({
     el: '#type-console',
     data: {
+      pageParentName: htmlData.data('parent-name'),
       resourceId: htmlData.data('id'),
       secondResourceId: htmlData.data('second-id'),
       pageIds: htmlData.data('page-ids'),
@@ -12,7 +13,7 @@ window.addEventListener('load', function () {
       currentPercentage: '0%',
       content: "",
       stats: false,
-      statsMsg: "",
+      accuracy: "",
       userSpeedMsq: "",
       computerSpeedMsg: "",
       finishExercise: false,
@@ -168,15 +169,17 @@ window.addEventListener('load', function () {
             let minute             = 60;
             let charsPerMinute     = (numOfChar * 60) / timeToFinishTyping;
             let wordsPerMinute     = Math.round(charsPerMinute / toCharacter);
+            let correctlyTypedChar = (lastSpanIndex)-errors;
+            let allCharacters      = lastSpanIndex;
 
             localStorage.setItem("userWPM", wordsPerMinute);
 
             // display stats
             vm.pageCounter += 1;
             vm.stats            = true;
-            vm.statsMsg         = `You typed ${(lastSpanIndex)-errors} characters correctly and typed ${errors} characters incorectly!`;
-            vm.userSpeedMsq     = `Your speed: ${wordsPerMinute} words per minute!`;
-            vm.computerSpeedMsg = `Computer speed: ${computerWordPerMinute} `;
+            vm.accuracy         = `${Math.round(correctlyTypedChar * 100 / allCharacters)}%`
+            vm.userSpeedMsq     = wordsPerMinute;
+            vm.computerSpeedMsg = computerWordPerMinute;
           } else if ((charPointer) == lastSpanIndex) {
             vm.userNotFinished     = true;
             typeConsole.fetchPageContent();

@@ -36,6 +36,7 @@
               <button class="btn btn-lg btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Practice
               </button>
+              <span v-cloak id= "current__page_parent" class="badge badge-info">{{ pageParentName }}</span>
               <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
                 <li class="dropdown-item"><a href="#">Random generated words</a></li>
                 <li class="dropdown-submenu">
@@ -55,10 +56,10 @@
         </div>
         </div>
 
-        <div class="md-col-2 offset-md-3">
-          <button @click="competeToggle" type="button" v-bind:class="{ 'btn-outline-success': Number(compete), 'btn-outline-secondary': !Number(compete) }" class="btn btn-lg btn">Compete:
-            <i v-bind:class="{ 'fa fa-check': Number(compete), 'fa fa-close': !Number(compete) }"></i>
-          </button>
+        <div class="md-col-2 offset-md-2">
+          <div  id="button-compete" @click="competeToggle" v-bind:class="{ 'btn-outline-success': Number(compete), 'btn-outline-secondary': !Number(compete) }" class="btn btn-lg btn">Compete:
+            <i v-bind:class="{ 'fa fa-toggle-on': Number(compete), 'fa fa-toggle-off': !Number(compete) }"></i>
+          </div>
         </div>
       <% end %>
   </div>

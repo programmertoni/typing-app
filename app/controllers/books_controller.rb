@@ -4,10 +4,11 @@ class BooksController < ApplicationController
   end
 
   def show
-    @books    = Book.all
-    @book     = Book.find(params[:id])
-    @book_id  = @book.id
-    @page_ids = @book.book_pages.order(:number).map(&:id)
+    @books     = Book.all
+    @book      = Book.find(params[:id])
+    @book_name = @book.name
+    @book_id   = @book.id
+    @page_ids  = @book.book_pages.order(:number).map(&:id)
   end
 
 end

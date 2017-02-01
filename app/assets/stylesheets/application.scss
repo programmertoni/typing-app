@@ -16,13 +16,24 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
+$dark-blue: #31708F;
+$light-blue: #D9EDF7;
+
 [v-cloak] {
   display: none;
 }
 
 // typing-console
 .computer {
-  background-color: #BDDBFF;
+  background-color: $light-blue;
+}
+
+#current__page_parent {
+  margin-left: 23px;
+}
+
+.fa-thumbs-o-up {
+  font-size: 3em;
 }
 
 #text {
@@ -40,10 +51,36 @@
 }
 
 .right-char {
-  color: #38597F;
+  color: $dark-blue;
 }
 
 // main navigation
+
+li.dropdown-item a {
+  display: inline-block;
+  padding: 4px 23px;
+  width: 280px;
+  height: 35px;
+  &:hover {
+    color: white;
+  }
+}
+
+li.dropdown-item {
+  padding: 0px;
+  &:hover {
+    color: white;
+    background-color: darken($light-blue, 50%);
+  }
+}
+
+a {
+    text-decoration: none !important;
+}
+
+#button-compete {
+  cursor: pointer;
+}
 
 .main__nav__row {
   margin-top: 10px;
@@ -62,6 +99,10 @@
 
 .progress {
   margin-top: 1px;
+}
+
+.progress-bar {
+  background-color: darken($light-blue,30%);
 }
 
 

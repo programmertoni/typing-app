@@ -1,11 +1,19 @@
 <%= render 'partials/navigation' %>
 <%= render 'partials/progress_bar' %>
 
-<div class="row justify-content-md-center">
-  <div class="col col-lg-10" id="text"></div>
-</div>
-<div class="row justify-content-md-center">
-  <div class="col col-lg-10" id="stats"></div>
-</div>
+<div class="row">
+  <div v-show="finishExercise" class="col col-lg-8 offset-md-1" id="text"></div>
 
+  <div class="col col-lg-3" v-show="stats" v-cloak>
+    <div class="alert alert-info" role="alert">
+      Accuracy: {{ accuracy }}
+      <br>
+      Your speed: {{ userSpeedMsq }} wpm
+      <br>
+      <span v-if="compete==='1'">Computer spped: {{ computerSpeedMsg }} wpm</span>
+      <br>
+    </div>
+    Press <strong>any Key</strong> to continue
+  </div>
+</div>
 
