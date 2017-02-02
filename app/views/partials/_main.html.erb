@@ -4,13 +4,23 @@
 <div class="row">
   <div v-show="!finishExercise" class="col col-lg-8 offset-md-1" id="text"></div>
 
-  <div class="col col-lg-3" v-show="stats" v-cloak>
+  <div class="text-center col col-lg-3" v-show="stats" v-cloak>
     <div class="alert alert-info" role="alert">
-      Accuracy: {{ accuracy }}
+      Accuracy: <strong>{{ accuracy }}</strong>
       <br>
-      Your speed: {{ userSpeedMsq }} wpm
+      You: <strong>{{ userSpeedMsq }} wpm</strong>
       <br>
-      <span v-if="compete==='1'">Computer spped: {{ computerSpeedMsg }} wpm</span>
+      <div>
+      </div  v-if="compete==='1'">
+      <span>Computer: <strong>{{ computerSpeedMsg }} wpm</span></strong>
+      <div v-if="Number(userSpeedMsq) > Number(computerSpeedMsg)">
+        <br>
+        
+        <h2>
+          <i class="fa fa-trophy" aria-hidden="true"></i>
+          You won!
+        </h2>
+      </div>
       <br>
     </div>
     Press <strong>any Key</strong> to continue
