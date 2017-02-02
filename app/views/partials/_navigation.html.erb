@@ -14,6 +14,7 @@
           <button class="btn btn-lg btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Languages
           </button>
+          <span v-cloak id= "current__page_parent" class="badge badge-info">{{ pageParentName }}</span>
           <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
             <!-- <p>TODO cache this </p> -->
             <% @languages.each do |language| %>
