@@ -165,11 +165,10 @@ window.addEventListener('load', function () {
 
             timer.endTimer         = new Date().getTime();
             let timeToFinishTyping = (timer.endTimer - timer.startTimer) / 1000;
-            let numOfChar          = lastSpanIndex;
+            let correctlyTypedChar = (lastSpanIndex) - errors;
             let minute             = 60;
-            let charsPerMinute     = (numOfChar * 60) / timeToFinishTyping;
+            let charsPerMinute     = (correctlyTypedChar * 60) / timeToFinishTyping;
             let wordsPerMinute     = Math.round(charsPerMinute / toCharacter);
-            let correctlyTypedChar = (lastSpanIndex)-errors;
             let allCharacters      = lastSpanIndex;
 
             localStorage.setItem("userWPM", wordsPerMinute);
