@@ -18,6 +18,7 @@
 
 $dark-blue: #31708F;
 $light-blue: #D9EDF7;
+$nav: darken($light-blue, 50%);
 
 [v-cloak] {
   display: none;
@@ -38,6 +39,7 @@ $light-blue: #D9EDF7;
 
 #text {
   font-size: 1.5em;
+  line-height: 28px;
   font-family: "Courier";
   white-space: pre-wrap;
 }
@@ -55,6 +57,20 @@ $light-blue: #D9EDF7;
 }
 
 // main navigation
+
+.dropdown .btn, .my-btn-nav-group .btn {
+  border-color: darken($nav, 8%);
+  color: $nav;
+  &:hover, &:focus {
+    background-color: darken($light-blue, 15%);
+    color: $nav;
+  }
+}
+
+.btn-secondary.active {
+  color: white;
+  background-color: darken($light-blue, 50%);
+}
 
 li.dropdown-item a {
   color: $dark-blue;
@@ -91,10 +107,6 @@ a {
 .compete__button {
   position: relative;
   float: right;
-}
-
-.my-btn-nav-group {
-  margin-right: 28px;
 }
 
 
