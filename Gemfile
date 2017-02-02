@@ -16,10 +16,11 @@ gem 'uglifier',           '>= 1.3.0'
 gem 'slim',               '3.0'
 gem 'bootstrap',          '~> 4.0.0.alpha6'
 gem 'vuejs-rails',        '~> 2.1'
-gem 'font-awesome-sass',  '~> 4.3'
+gem 'font-awesome-sass',  '~> 4.7.0'
 gem 'bcrypt',             '~> 3.1'
 gem 'jquery-rails',       '~> 4.1'
 gem 'jbuilder',           '~> 2.5'
+gem 'therubyracer',       '~> 0.12.2'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.3.3' # this gem is used by bootstrap for tooltips
