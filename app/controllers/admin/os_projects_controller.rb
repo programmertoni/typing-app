@@ -1,4 +1,4 @@
-class Admin::OsProjectsController < ApplicationController
+class Admin::OsProjectsController < AdminController
 
   def index
     @language    = Language.find(params[:language_id])

@@ -1,5 +1,4 @@
-class Admin::OsPagesController < ApplicationController
-  layout 'admin'
+class Admin::OsPagesController < AdminController
 
   def index
     @language   = Language.find(params[:language_id])

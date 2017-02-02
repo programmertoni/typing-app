@@ -1,5 +1,4 @@
-class Admin::LanguagesController < ApplicationController
-  layout 'admin'
+class Admin::LanguagesController < AdminController
 
   def index
     @languages = Language.all.order(:order)

@@ -1,7 +1,20 @@
 Rails.application.routes.draw do
 
-  root to: 'static_pages#index'
-  get '/learn', to: 'static_pages#index'
+  root                       to: 'static_pages#index'
+  get  '/learn',             to: 'static_pages#index'
+  get  '/login',             to: 'users#login'
+  get  '/logout',            to: 'users#logout'
+  post '/authenticate-user', to: 'users#user_authenticate'
+
+  resources :books, only: [:index, :show] do
+    resources :book_pages, only: [:show]
+  end
+
+  resources :languages, only: [:index] do
+    resources :os_projects, only: [:index, :show] do
+      resources :os_pages, only: [:show]
+    end
+  end
 
   namespace :admin do
     resources :books, only: [:index, :create, :edit, :update, :destroy] do
@@ -15,13 +28,4 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :books, only: [:index, :show] do
-    resources :book_pages, only: [:show]
-  end
-
-  resources :languages, only: [:index] do
-    resources :os_projects, only: [:index, :show] do
-      resources :os_pages, only: [:show]
-    end
-  end
 end

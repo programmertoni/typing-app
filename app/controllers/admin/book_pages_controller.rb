@@ -1,5 +1,4 @@
-class Admin::BookPagesController < ApplicationController
-  layout 'admin'
+class Admin::BookPagesController < AdminController
 
   def index
     @book = Book.find(params[:book_id])
