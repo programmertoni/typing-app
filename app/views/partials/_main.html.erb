@@ -10,18 +10,17 @@
       <br>
       You: <strong>{{ userSpeedMsq }} wpm</strong>
       <br>
-      <div>
-      </div  v-if="compete==='1'">
-      <span>Computer: <strong>{{ computerSpeedMsg }} wpm</span></strong>
-      <div v-if="Number(userSpeedMsq) > Number(computerSpeedMsg)">
-        <br>
-        
-        <h2>
-          <i class="fa fa-trophy" aria-hidden="true"></i>
-          You won!
-        </h2>
+      <div  v-if="compete==='1'">
+        <span>Computer: <strong>{{ computerSpeedMsg }} wpm</span></strong>
+          <div v-if="Number(userSpeedMsq) > Number(computerSpeedMsg)">
+            <br>
+            <h2>
+              <i class="fa fa-trophy" aria-hidden="true"></i>
+              You won!
+            </h2>
+          </div>
+          <br>
       </div>
-      <br>
     </div>
     Press <strong>any Key</strong> to continue
   </div>
