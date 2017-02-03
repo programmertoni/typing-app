@@ -9,5 +9,8 @@ class ActiveSupport::TestCase
   require 'minitest/reporters'
   Minitest::Reporters.use!
 
+  require 'simplecov'
+  SimpleCov.start 'rails' unless ENV['NO_COVERAGE']
+
   # Add more helper methods to be used by all tests here...
 end
