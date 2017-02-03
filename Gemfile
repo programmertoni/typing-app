@@ -23,7 +23,6 @@ gem 'jbuilder',           '~> 2.5'
 gem 'therubyracer',       '~> 0.12.2'
 
 # TODO remove when the app is finished
-gem 'rack-mini-profiler', '~> 0.10.1'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.3.3' # this gem is used by bootstrap for tooltips
@@ -32,6 +31,7 @@ end
 group :development, :test do
   gem 'byebug', platform: :mri
   gem 'pry-rails'
+  gem 'rack-mini-profiler'
 end
 
 group :development do
