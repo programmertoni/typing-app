@@ -46,5 +46,6 @@ end
 
 group :test do
   gem 'minitest-reporters'
+  gem 'minitest-rails-capybara'
   gem 'simplecov', require: false
 end
