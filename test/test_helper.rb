@@ -13,4 +13,7 @@ class ActiveSupport::TestCase
   SimpleCov.start 'rails' unless ENV['NO_COVERAGE']
 
   # Add more helper methods to be used by all tests here...
+  def admin_signs_in
+    post authenticate_user_path, params: { name: "admin", password: "strong-password" }
+  end
 end
