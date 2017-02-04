@@ -48,4 +48,5 @@ group :test do
   gem 'minitest-reporters'
   gem 'minitest-rails-capybara'
   gem 'simplecov', require: false
+  gem 'launchy'
 end
