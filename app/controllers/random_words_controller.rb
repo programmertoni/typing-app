@@ -11,16 +11,17 @@ class RandomWordsController < ApplicationController
     generated_text = case current_page
                      when "random: paragraph"    then LiterateRandomizer.paragraph
                      when "random: chuck norris" then Faker::ChuckNorris.fact
+                     when "random: hipster"      then Faker::Hipster.paragraph
                      when "random: hacker"       # https://github.com/stympy/faker/blob/master/doc/hacker.md
-                     when "random: hipster"      # Faker::Hipster.paragraph
                      when "random: ancients"     # https://github.com/stympy/faker/blob/master/doc/ancient.md
                      when "random: Date"         # https://github.com/stympy/faker/blob/master/doc/date.md
-                     when "random: name"         # Faker::Name.name                                           # => "Tyshawn Johns Sr."
-                     when "random: address"      # Faker::Address.street_address                              # => "282 Kevin Brook" Faker::Address.street_name              # => "Larkin Fork"
-                     when "random: city"         # Faker::Address.city                                        # => "Imogeneborough"
-                     when "random: country"      # Faker::Address.country                                     # => "French Guiana"
+
+                     when "random: names"        then to_sentance "Faker::Name.name"
+                     when "random: addresses"    then to_sentance "Faker::Address.street_address"
+                     when "random: cities"       then to_sentance "Faker::Address.city"
+                     when "random: countries"      then to_sentance "Faker::Address.country"
                      when "random: space"        # https://github.com/stympy/faker/blob/master/doc/space.md
-                     when "random: superhero"    # Faker::Superhero.name                                      # => "Magnificent Shatterstar"
+                     when "random: superhero"    then to_sentance "Faker::Superhero.name"
                      when "random: email"        # Faker::Internet.email                                      # => "eliza@mann.net"
                      when "random: numbers"      # Faker::Number.number(10)                                   # => "1968353479"
                      when "random: websites"     # Faker::Internet.domain_name                                # => "effertz.info"
@@ -33,6 +34,14 @@ class RandomWordsController < ApplicationController
     respond_to do |format|
       format.json { render json: { page_content: generated_text }} 
     end
+  end
+
+  private
+
+  def to_sentance(phrase)
+    arr = []
+    10.times { arr << eval(phrase) }
+    arr.join(", ")
   end
 
 end
