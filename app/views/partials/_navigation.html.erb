@@ -32,14 +32,13 @@
           </ul>
           <% end %>
 
-          <% if params[:controller] == 'books' %>
+          <% if params[:controller] == 'books' || params[:controller] == 'random_words' %>
               <div class="dropdown">
               <button class="btn btn-lg btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Practice
               </button>
               <span v-cloak id= "current__page_parent" class="badge badge-info">{{ pageParentName }}</span>
               <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
-                <!-- <li class="dropdown&#45;item"><a href="#">Random generated words</a></li> -->
                 <li class="dropdown-submenu">
                   <a  class="dropdown-item" tabindex="-1" href="#">Books</a>
                   <ul class="dropdown-menu">
@@ -50,6 +49,9 @@
                       </li>
                     <% end %>
                   </ul>
+                </li>
+                <li class="dropdown-item">
+                  <%= link_to "random: words", random_words_path %>
                 </li>
               </ul>
               <% end %>

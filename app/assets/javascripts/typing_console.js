@@ -22,7 +22,7 @@ window.addEventListener('load', function () {
       userFinished: ! this.userNotFinished
     },
     created: function(){
-      if (htmlData.data('id')) {
+      if ((htmlData.data('id')) || (this.pageParentName == 'Random Words')) {
         this.fetchPageContent();
       }
     },
@@ -38,10 +38,13 @@ window.addEventListener('load', function () {
           localStorage.setItem("compete", this.compete);
       },
       fetchPageContent: function(){
-        if (this.pageIds.length > 0) {
+        if ((this.pageParentName == 'Random Words') || (this.pageIds.length > 0))  {
           var url;
+
           if (htmlData.data('current-page') === 'book') {
             url = `/books/${this.resourceId}/book_pages/${this.pageIds.shift()}.json`;
+          } else if (htmlData.data('current-page') == 'random-words') {
+            url = '/generate-random-words.json';
           } else {
             url = `/languages/${this.resourceId}/os_projects/${this.secondResourceId}/os_pages/${this.pageIds.shift()}.json`;
           }

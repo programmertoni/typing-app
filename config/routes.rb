@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   get  '/logout',            to: 'users#logout'
   post '/authenticate-user', to: 'users#user_authenticate'
 
+  get  '/random-words',      to: 'random_words#show'
+  get '/generate-random-words.json',  to: 'random_words#generate_sentance'
+
   resources :books, only: [:index, :show] do
     resources :book_pages, only: [:show]
   end
