@@ -5,6 +5,7 @@ window.addEventListener('load', function () {
     el: '#type-console',
     data: {
       pageParentName: htmlData.data('parent-name'),
+      currentPage: htmlData.data('current-page'),
       resourceId: htmlData.data('id'),
       secondResourceId: htmlData.data('second-id'),
       pageIds: htmlData.data('page-ids'),
@@ -22,7 +23,7 @@ window.addEventListener('load', function () {
       userFinished: ! this.userNotFinished
     },
     created: function(){
-      if ((htmlData.data('id')) || (this.pageParentName == 'Random Words')) {
+      if ((htmlData.data('id')) || (this.currentPage == 'random-words')) {
         this.fetchPageContent();
       }
     },
@@ -38,13 +39,13 @@ window.addEventListener('load', function () {
           localStorage.setItem("compete", this.compete);
       },
       fetchPageContent: function(){
-        if ((this.pageParentName == 'Random Words') || (this.pageIds.length > 0))  {
+        if ((this.currentPage == 'random-words') || (this.pageIds.length > 0))  {
           var url;
 
-          if (htmlData.data('current-page') === 'book') {
+          if (this.currentPage === 'book') {
             url = `/books/${this.resourceId}/book_pages/${this.pageIds.shift()}.json`;
-          } else if (htmlData.data('current-page') == 'random-words') {
-            url = '/generate-random-words.json';
+          } else if (this.currentPage == 'random-words') {
+            url = `/generate-random-words.json?page_name=${htmlData.data('parent-name')}`
           } else {
             url = `/languages/${this.resourceId}/os_projects/${this.secondResourceId}/os_pages/${this.pageIds.shift()}.json`;
           }
