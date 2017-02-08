@@ -9,11 +9,11 @@ class RandomWordsController < ApplicationController
     current_page = params[:page_name]
 
     generated_text = case current_page
-                     when "random: sentance" then LiterateRandomizer.paragraph
+                     when "random: sentance"     then LiterateRandomizer.paragraph
+                     when "random: chuck norris" then Faker::ChuckNorris.fact
                      when "random: hacker"       # https://github.com/stympy/faker/blob/master/doc/hacker.md
                      when "random: hipster"      # Faker::Hipster.paragraph
                      when "random: ancients"     # https://github.com/stympy/faker/blob/master/doc/ancient.md
-                     when "random: chuck norris" # Faker::ChuckNorris.fact                                    # => "Chuck Norris can solve the Towers of Hanoi in one move."
                      when "random: Date"         # https://github.com/stympy/faker/blob/master/doc/date.md
                      when "random: name"         # Faker::Name.name                                           # => "Tyshawn Johns Sr."
                      when "random: address"      # Faker::Address.street_address                              # => "282 Kevin Brook" Faker::Address.street_name              # => "Larkin Fork"
