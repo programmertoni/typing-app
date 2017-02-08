@@ -9,7 +9,7 @@ class RandomWordsController < ApplicationController
     current_page = params[:page_name]
 
     generated_text = case current_page
-                     when "random: sentance"     then LiterateRandomizer.paragraph
+                     when "random: paragraph"    then LiterateRandomizer.paragraph
                      when "random: chuck norris" then Faker::ChuckNorris.fact
                      when "random: hacker"       # https://github.com/stympy/faker/blob/master/doc/hacker.md
                      when "random: hipster"      # Faker::Hipster.paragraph
