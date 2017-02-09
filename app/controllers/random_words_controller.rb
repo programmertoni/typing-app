@@ -10,6 +10,8 @@ class RandomWordsController < ApplicationController
 
     generated_text = case current_page
                      when "random: paragraph"    then LiterateRandomizer.paragraph
+                     when "random: braces"       then random_braces
+                     when "random: symbols"      then random_symbols
                      when "random: chuck norris" then Faker::ChuckNorris.fact
                      when "random: hipster"      then Faker::Hipster.paragraph
                      when "random: hacker"       then Faker::Hacker.say_something_smart
@@ -27,7 +29,6 @@ class RandomWordsController < ApplicationController
                      when "random: websites"     then to_sentance "Faker::Internet.domain_name", " "
                      when "random: url"          then to_sentance "Faker::Internet.url"
                      when "random: characters"   then to_sentance "Faker::Internet.password(10, 20, true, true)", " "
-                     when "radnom: [{()}]"
                      end
 
     respond_to do |format|
@@ -47,5 +48,19 @@ class RandomWordsController < ApplicationController
     result = []
     list.cycle(5) { |x| result << eval(x) }
     result.join(', ')
+  end
+
+  def random_braces
+    braces = %w([ { ( ) } ])
+    result = []
+    20.times { result << braces.shuffle }
+    result.join
+  end
+
+  def random_symbols
+    symbols = %w([ { ( ) } ] ! @ # $ % ^ & * ` ` ~ ? _ -)
+    result = []
+    20.times { result << symbols.shuffle }
+    result.join
   end
 end
