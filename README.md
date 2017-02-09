@@ -1,24 +1,15 @@
-# README
+## Welcome to Touch Typing app for programmers
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This app is build with Ruby on Rails and Vue.js. 
 
-Things you may want to cover:
+## Demo App
 
-* Ruby version
+[Here you can practice your touch typing skills](https://typing-code.herokuapp.com/)
 
-* System dependencies
+## Contributing
 
-* Configuration
+It would be awesome if you could contribute to make this app better.
 
-* Database creation
+## License
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+You can do what ever you like with this code for your own personal use.
