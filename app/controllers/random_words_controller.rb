@@ -12,23 +12,14 @@ class RandomWordsController < ApplicationController
                      when "random: paragraph"    then LiterateRandomizer.paragraph
                      when "random: braces"       then random_braces
                      when "random: symbols"      then random_symbols
+                     when "random: characters"   then to_sentance "Faker::Internet.password(10, 20, true, true)", " "
+                     when "random: numbers"      then to_sentance "Faker::Number.number(10)", " "
                      when "random: chuck norris" then Faker::ChuckNorris.fact
                      when "random: hipster"      then Faker::Hipster.paragraph
                      when "random: hacker"       then Faker::Hacker.say_something_smart
-                     when "random: ancients"     then from_list_to_sentance "Faker::Ancient.god", "Faker::Ancient.primordial", "Faker::Ancient.titan", "Faker::Ancient.hero"
-                     when "random: date"         then to_sentance "Faker::Date.between(100.years.ago, 100.years.from_now)", " "
-                     when "random: space"        then from_list_to_sentance "Faker::Space.planet", "Faker::Space.moon", "Faker::Space.galaxy", "Faker::Space.nebula", "Faker::Space.star_cluster", "Faker::Space.constellation", "Faker::Space.star", "Faker::Space.agency", "Faker::Space.nasa_space_craft", "Faker::Space.company", "Faker::Space.meteorite"
-                     when "random: food"         then from_list_to_sentance "Faker::Food.ingredient", "Faker::Food.spice"
-                     when "random: names"        then to_sentance "Faker::Name.name"
-                     when "random: addresses"    then to_sentance "Faker::Address.street_address"
-                     when "random: cities"       then to_sentance "Faker::Address.city"
-                     when "random: countries"    then to_sentance "Faker::Address.country"
-                     when "random: superhero"    then to_sentance "Faker::Superhero.name"
-                     when "random: email"        then to_sentance "Faker::Internet.email"
-                     when "random: numbers"      then to_sentance "Faker::Number.number(10)", " "
-                     when "random: websites"     then to_sentance "Faker::Internet.domain_name", " "
                      when "random: url"          then to_sentance "Faker::Internet.url"
-                     when "random: characters"   then to_sentance "Faker::Internet.password(10, 20, true, true)", " "
+                     when "random: email"        then to_sentance "Faker::Internet.email", " "
+                     when "random: space"        then from_list_to_sentance "Faker::Space.planet", "Faker::Space.moon", "Faker::Space.galaxy", "Faker::Space.nebula", "Faker::Space.star_cluster", "Faker::Space.constellation", "Faker::Space.star", "Faker::Space.agency", "Faker::Space.nasa_space_craft", "Faker::Space.company", "Faker::Space.meteorite"
                      end
 
     respond_to do |format|
