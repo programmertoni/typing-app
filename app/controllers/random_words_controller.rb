@@ -49,7 +49,7 @@ class RandomWordsController < ApplicationController
   end
 
   def random_symbols
-    symbols = %w([ { ( ) } ] ! @ # $ % ^ & * ` ` ~ ? _ -)
+    symbols = %w([ { ( ) } ] ! @ # $ % ^ & * ` ~ ? _ - ; , / ' " \ | :)
     result = []
     20.times { result << symbols.shuffle }
     result.join
