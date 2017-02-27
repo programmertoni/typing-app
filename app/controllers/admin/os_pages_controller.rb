@@ -3,14 +3,15 @@ class Admin::OsPagesController < AdminController
   def index
     @language   = Language.find(params[:language_id])
     @os_project = OsProject.find(params[:os_project_id])
+    @os_pages   = @os_project.os_pages.order(:number)
   end
 
   def new
     @language    = Language.find(params[:language_id])
     @os_project  = OsProject.find(params[:os_project_id])
     @os_page     = OsPage.new
-    pages_num    = @os_project.os_pages
-    @page_number = pages_num.count.zero? ? 1 : (pages_num.count + 1)
+    pages_num    = @os_project.os_pages.count
+    @page_number = pages_num.zero? ? 1 : (pages_num + 1)
   end
 
   def create

@@ -1,7 +1,7 @@
 class Admin::BookPagesController < AdminController
 
   def index
-    @book = Book.find(params[:book_id])
+    @book       = Book.find(params[:book_id])
     @book_pages = @book.book_pages.order(:number)
   end
 
@@ -39,5 +39,4 @@ class Admin::BookPagesController < AdminController
   def book_pages_param
     params.require(:book_page).permit(:number, :content, :book_id)
   end
-
 end
